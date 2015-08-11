@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Defined - Dictionary</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="gfx/defined.css">
+	
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="apple-touch-icon" href="gfx/icon-152.png">
+
+	<meta name="application-name" content="Defined" />
+	<meta name="msapplication-TileColor" content="#17a3a5">
+	<meta name="msapplication-square70x70logo" content="gfx/tile-70.png" />
+	<meta name="msapplication-square150x150logo" content="gfx/tile-150.png" />
+</head>
+<body>
+
+	<h1>Loading...</h1>
+	<input id="search" placeholder="Look up...">
+	<div id="results"></div>
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var $input;
+		var $output;
+		var $title;
+		
+		$(function(){
+			$input = $('#search');
+			$output = $('#results');
+			$title = $('h1');
+			
+			$input.bind('keypress', function(e) {
+					//Enter
+					if(e.keyCode == 13){ go(); }
+				})
+				.focus();
+				
+			d(false);
+		});
+		
+		function go()
+		{
+			d(true);
+			$.get('api/v2.php', {'word' : $input.val()}, cb);
+		}
+		
+		function cb(data)
+		{
+			$output.html(data);
+			d(false);
+			$input.val("").focus();
+		}
+		
+		function d(on){ $title.text(on ? 'Defining...' : 'Defined') }
+	</script>
+</body>
+</html>

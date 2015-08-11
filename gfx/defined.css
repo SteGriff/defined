@@ -1,0 +1,59 @@
+*{margin:0;padding:0;}
+
+body
+{
+	background: url(steps.png);
+	font-family: sans-serif;
+}
+
+#search, #results
+{
+    display: block;
+    margin: 0 auto 0.7em;
+}
+h1, #results
+{
+	width: 95%;
+}
+
+h1
+{
+	color: #17a3a5;
+    font-size: 300%;
+    padding: 0.8em 0;
+	text-transform: uppercase;
+	font-weight: normal;
+	margin: 0 auto -0.2em;
+}
+
+#search
+{
+	font-size: 200%;
+	padding: 2%;
+	border: 5px solid #17a3a5;
+	color: #225b66;
+	width: 90%;
+}
+@media (max-width: 767px){
+	#search
+	{
+		border-width: 3px;
+	}
+}
+
+#results
+{
+    color: #225b66;
+    text-shadow: 1px 1px #eee;
+}
+
+#results > h1 {
+    margin: 1em 0 0.4em;
+}
+dl
+{
+	margin: 1em 0;
+}
+dd {
+    margin: 0.2em 0 0.6em 1em;
+}
