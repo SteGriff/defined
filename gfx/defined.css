@@ -57,3 +57,12 @@ dl
 dd {
     margin: 0.2em 0 0.6em 1em;
 }
+
+#about
+{
+	position: absolute;
+	top: 20px;
+	right: 2.5%;
+	font-size: 80%;
+	font-weight: bold;
+}
