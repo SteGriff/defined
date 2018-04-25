@@ -47,6 +47,7 @@ function viewDefinitions($defs, $type)
 			}
 			break;
 		case 'html':
+		default:
 			foreach ($defs as $d)
 			{			
 				if ($lastSource === '')
@@ -72,7 +73,6 @@ function viewDefinitions($defs, $type)
 	return $response;
 }
 
-
 function viewEtymologies($etyms, $type)
 {	
 	$response = '';
@@ -85,6 +85,7 @@ function viewEtymologies($etyms, $type)
 	switch ($type)
 	{
 		case 'html':
+		default:
 			$response = '<ul>';			
 			foreach ($etyms as $e)
 			{
@@ -103,18 +104,12 @@ function viewTitle($title, $type)
 	
 	switch ($type)
 	{
-		case 'html':
-			$response = '<ul>';			
-			foreach ($etyms as $e)
-			{
-				$e = str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", '', $e);
-				$response .= "<li>$e</li>";
-			}
-			$response .= '</ul>';
-			break;
 		case 'plain':
-		default:
 			$response = "$title\r\n";
+			break;
+		case 'html':
+		default:
+			$response = "<h2>$title</h2>";
 			break;
 	}
 	return $response;

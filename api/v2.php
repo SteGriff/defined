@@ -34,9 +34,8 @@ if ($word === null){
 	http_fatal_400('No word specified');
 }
 
-//Spoof the accept header
-// (until we support more formats)
-$acceptHeader = isset($_SERVER['Accept']) ? $_SERVER['Accept'] : 'text/html';
+//Get the accept header
+$acceptHeader = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : 'text/html';
 $format = parseContentType($acceptHeader);
 
 sendHeader($format);
@@ -51,8 +50,7 @@ $wordsApi = new WordsApi($client);
 //Prepare output string, the "view"
 $view = '';
 
-//Get the stuff
-
+//Get the data
 $definitions = getDefinitions($word);
 $etyms = getEtymologies($word);
 
