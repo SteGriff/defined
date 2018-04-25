@@ -1,5 +1,4 @@
 <?php
-
 require '../ext.php';
 require '../DAL.php';
 require '../views.php';
@@ -34,6 +33,10 @@ if ($word === null){
 	http_fatal_400('No word specified');
 }
 
+//Show etymologies if 'etyms' param is true or not set
+$etyms = from_request('etyms');
+$doEtyms = ($etyms === null || strtolower($etyms) === 'true'); 
+
 //Get the accept header
 $acceptHeader = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : 'text/html';
 $format = parseContentType($acceptHeader);
@@ -57,9 +60,11 @@ $etyms = getEtymologies($word);
 //Generate view
 $view .= viewTitle($word, $format);
 $view .= viewDefinitions($definitions, $format);
-$view .= viewEtymologies($etyms, $format);
+if ($doEtyms)
+{
+	$view .= viewEtymologies($etyms, $format);
+}
 
 //Output
 echo $view;
-
 ?>

@@ -84,6 +84,14 @@ function viewEtymologies($etyms, $type)
 	
 	switch ($type)
 	{
+		case 'plain':		
+			foreach ($etyms as $e)
+			{
+				$e = str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", '', $e);
+				$response .= strip_tags($e);
+			}
+			$response .= "\r\n";
+			break;
 		case 'html':
 		default:
 			$response = '<ul>';			
